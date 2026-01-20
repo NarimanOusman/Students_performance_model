@@ -1,0 +1,187 @@
+<!-- visual/templates/visual/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Performance Insights | Nariman</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+    font-family: 'Inter', sans-serif;
+    /* Visible emerald-aqua gradient */
+    background: linear-gradient(135deg, #e6f7f2 0%, #d1f0ec 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  .insight-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(19, 236, 146, 0.2);
+  }
+    .insight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(19, 236, 146, 0.12);
+      border-color: rgba(19, 236, 146, 0.3);
+    }
+    .metric-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+    @media (max-width: 768px) {
+      .metric-value { font-size: 1.875rem; }
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-emerald-600">Nariman Analytics</h1>
+      <a href="/" class="text-sm text-gray-600 hover:text-emerald-600 font-medium">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Hero -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Student Performance Insights</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Real data from 1,000 students. Discover what drives academic success.
+      </p>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div class="insight-card text-center">
+        <div class="text-gray-500 text-xs mb-1">Total Students</div>
+        <div class="metric-value text-emerald-600">{{ total_students }}</div>
+      </div>
+      <div class="insight-card text-center">
+        <div class="text-gray-500 text-xs mb-1">Avg Math Score</div>
+        <div class="metric-value text-blue-600">{{ avg_math }}</div>
+      </div>
+      <div class="insight-card text-center">
+        <div class="text-gray-500 text-xs mb-1">Avg Reading</div>
+        <div class="metric-value text-purple-600">{{ avg_reading }}</div>
+      </div>
+      <div class="insight-card text-center">
+        <div class="text-gray-500 text-xs mb-1">Overall Pass Rate</div>
+        <div class="metric-value text-emerald-600">{{ pass_rate }}%</div>
+      </div>
+    </div>
+
+    <!-- Actionable Insights -->
+    <div class="mb-10">
+      <h3 class="text-2xl font-bold text-gray-900 mb-5 text-center">What Makes the Difference?</h3>
+      
+      <div class="grid grid-cols-1 gap-5">
+        <!-- Test Prep Impact -->
+        <div class="insight-card">
+          <div class="flex items-start mb-3">
+            <div class="bg-blue-100 p-2 rounded-lg mr-3">
+              <span class="material-symbols-outlined text-blue-600">auto_stories</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Test Preparation Boost</h4>
+              <p class="text-gray-600 text-sm mt-1">
+                Completing test prep significantly increases your chance of passing.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between mt-3">
+            <div class="text-center">
+              <div class="text-xs text-gray-500">With Prep</div>
+              <div class="font-bold text-emerald-600 mt-1">{{ prep_effect.completed }}%</div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs text-gray-500">Without Prep</div>
+              <div class="font-bold mt-1">{{ prep_effect.none }}%</div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-gray-100">
+            <p class="text-sm text-emerald-700 font-medium">
+              +{{ prep_effect.completed|floatformat:0|add:prep_effect.none|floatformat:0 }}% higher chance
+            </p>
+          </div>
+        </div>
+
+        <!-- Lunch Type Impact -->
+        <div class="insight-card">
+          <div class="flex items-start mb-3">
+            <div class="bg-amber-100 p-2 rounded-lg mr-3">
+              <span class="material-symbols-outlined text-amber-600">lunch_dining</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Lunch Type Matters</h4>
+              <p class="text-gray-600 text-sm mt-1">
+                Students with standard lunch consistently outperform peers.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between mt-3">
+            <div class="text-center">
+              <div class="text-xs text-gray-500">Standard</div>
+              <div class="font-bold text-emerald-600 mt-1">{{ lunch_effect.standard }}%</div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs text-gray-500">Free/Reduced</div>
+              <div class="font-bold mt-1">{{ lunch_effect.free_reduced }}%</div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-gray-100">
+            <p class="text-sm text-amber-700 font-medium">
+              {{ lunch_effect.standard|floatformat:0|add:lunch_effect.free_reduced|floatformat:0 }}% higher pass rate
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Performing Groups -->
+    <div class="insight-card mb-8">
+      <h4 class="font-bold text-lg mb-3">Top Performing Groups</h4>
+      <div class="space-y-2">
+        {% for group, rate in top_groups.items %}
+        <div class="flex justify-between items-center">
+          <span class="font-medium">{{ group }}</span>
+          <span class="font-bold text-emerald-600">{{ rate }}%</span>
+        </div>
+        {% endfor %}
+      </div>
+      <p class="text-gray-500 text-sm mt-3">
+        Group labels (A–E) are anonymized categories based on student background factors 
+        like ethnicity and parental education in the original dataset.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <div class="inline-block bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl px-5 py-4 border border-emerald-200">
+        <h3 class="font-bold text-emerald-800 text-lg mb-2">Want Personalized Insights?</h3>
+        <p class="text-emerald-700 mb-3 max-w-md">
+          Enter your details to predict your academic outcome.
+        </p>
+        <a href="/predict/" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-medium inline-block transition-colors">
+          Go to Prediction Tool
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200/50 mt-10 py-5 text-center text-gray-500 text-sm">
+    © 2024 Nariman Osman. Designed for Excellence in Kigali, Rwanda.
+  </footer>
+
+</body>
+</html>

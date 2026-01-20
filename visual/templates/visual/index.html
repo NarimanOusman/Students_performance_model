@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Nariman Performance Landing Page | Master Your Academic Trajectory</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13ec92",
+            "sky-blue": "#e0f2fe",
+            "soft-grey": "#64748b",
+            "background-light": "#f6f8f7",
+            "background-dark": "#10221a",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .dark .glass-effect {
+      background: rgba(16, 34, 26, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .mesh-gradient {
+      background-color: #f6f8f7;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(19, 236, 146, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(186, 230, 253, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(19, 236, 146, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(186, 230, 253, 0.3) 0px, transparent 50%);
+    }
+    .dark .mesh-gradient {
+      background-color: #10221a;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(19, 236, 146, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(12, 74, 110, 0.2) 0px, transparent 50%);
+    }
+
+    /* 3D Cube */
+    .responsive-3d {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+      margin-bottom: 24px;
+    }
+    .responsive-3d .cube {
+      width: 140px;
+      height: 140px;
+      transform-style: preserve-3d;
+      animation: rotateCube 16s infinite linear;
+    }
+    .responsive-3d .face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(19, 236, 146, 0.25);
+      border: 2px solid rgba(19, 236, 146, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #0d1b16;
+      backdrop-filter: blur(6px);
+      border-radius: 14px;
+      font-size: 1.1rem;
+    }
+    .responsive-3d .face.front { transform: rotateY(0deg) translateZ(70px); }
+    .responsive-3d .face.back { transform: rotateY(180deg) translateZ(70px); }
+    .responsive-3d .face.right { transform: rotateY(90deg) translateZ(70px); }
+    .responsive-3d .face.left { transform: rotateY(-90deg) translateZ(70px); }
+    .responsive-3d .face.top { transform: rotateX(90deg) translateZ(70px); }
+    .responsive-3d .face.bottom { transform: rotateX(-90deg) translateZ(70px); }
+
+    @keyframes rotateCube {
+      0% { transform: rotateX(0) rotateY(0); }
+      100% { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    @media (min-width: 640px) {
+      .responsive-3d { height: 340px; }
+      .responsive-3d .cube { width: 160px; height: 160px; }
+    }
+    @media (min-width: 768px) {
+      .responsive-3d { height: 420px; }
+      .responsive-3d .cube { width: 180px; height: 180px; }
+    }
+    @media (min-width: 1024px) {
+      .responsive-3d { height: 520px; }
+      .responsive-3d .cube { width: 200px; height: 200px; }
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Dropdowns */
+    .nariman-dropdown,
+    .account-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      z-index: 50;
+      display: none;
+      min-width: 180px;
+    }
+    .account-dropdown {
+      left: auto !important;
+      right: 0 !important;
+    }
+  </style>
+</head>
+<body class="font-display mesh-gradient min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Fixed Header -->
+  <div class="fixed top-0 left-0 right-0 z-50 flex justify-center p-2 sm:p-3">
+    <header class="glass-effect w-full max-w-[1300px] flex items-center justify-between px-4 py-3 rounded-2xl shadow-sm">
+      <!-- Nariman Logo + Dropdown -->
+      <div class="relative nariman-container">
+        <button class="flex items-center gap-1 text-slate-800 md:text-xl font-extrabold tracking-tight text-base">
+          Nariman
+          <span class="material-symbols-outlined text-sm">expand_more</span>
+        </button>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">About Us</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">How it Works</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Success Stories</a>
+      </nav>
+
+      <!-- Account Button -->
+      <div class="relative account-container">
+        <button class="bg-primary hover:scale-105 transition-all px-4 py-1.5 rounded-lg text-[#0d1b16] text-sm font-bold shadow-sm">
+          Account
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <!-- Dropdowns positioned under navbar -->
+  <div class="fixed top-0 left-0 right-0 z-40 pt-16 px-4 pointer-events-none">
+    <div class="nariman-dropdown glass-effect pointer-events-auto"></div>
+    <div class="account-dropdown glass-effect pointer-events-auto"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <main class="pt-28 pb-12">
+    <section class="max-w-[1300px] mx-auto px-6">
+      <div class="relative flex flex-col items-center text-center">
+        <div class="responsive-3d">
+          <div class="cube">
+            <div class="face front">GPA</div>
+            <div class="face back">A+</div>
+            <div class="face right">📈</div>
+            <div class="face left">🎯</div>
+            <div class="face top">📚</div>
+            <div class="face bottom">🏆</div>
+          </div>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight max-w-[900px] leading-[1.1] mb-6">
+          Master Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Academic Trajectory</span>
+        </h1>
+
+        <div class="absolute -top-10 -left-10 size-64 bg-primary/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute -bottom-20 -right-10 size-96 bg-sky-blue/30 dark:bg-sky-blue/5 rounded-full blur-3xl -z-10"></div>
+
+        <p class="text-sm sm:text-base md:text-lg text-soft-grey dark:text-slate-400 max-w-[700px] leading-relaxed mb-8 px-2">
+          Predict your growth with predictive performance modeling. A lightweight tracking experience designed to help you stay ahead.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+          <a href="/dashboard/">
+  <button class="bg-primary hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/20 transition-all px-8 py-4 rounded-2xl text-[#0d1b16] text-base md:text-lg font-extrabold flex items-center gap-2 group">
+    Get Started Free
+    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+  </button>
+</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Stats Cards -->
+  <section class="max-w-[1100px] mx-auto px-6 mt-12 mb-24 reveal">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-effect p-8 rounded-3xl text-center group hover:-translate-y-1 transition-transform pt-4 sm:pt-0 border-l-4 border-l-primary">
+        <p class="text-soft-grey text-sm font-semibold uppercase tracking-widest mb-2">Active Scholars</p>
+        <p class="text-4xl font-extrabold mb-4">12,400+</p>
+        <div class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div class="w-3/4 h-full bg-primary"></div>
+        </div>
+      </div>
+      <div class="glass-effect p-8 rounded-3xl text-center group hover:-translate-y-1 transition-transform pt-4 sm:pt-0 border-l-4 border-l-primary">
+        <p class="text-soft-grey text-sm font-semibold uppercase tracking-widest mb-2">Success Predictor</p>
+        <p class="text-4xl font-extrabold mb-4">98.2%</p>
+        <div class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div class="w-[98%] h-full bg-primary"></div>
+        </div>
+      </div>
+      <div class="glass-effect p-8 rounded-3xl text-center group hover:-translate-y-1 transition-transform pt-4 sm:pt-0 border-l-4 border-l-primary">
+        <p class="text-soft-grey text-sm font-semibold uppercase tracking-widest mb-2">GPA Lift Average</p>
+        <p class="text-4xl font-extrabold mb-4">+0.4</p>
+        <div class="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+          <div class="w-1/2 h-full bg-primary"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="max-w-[1200px] mx-auto px-6 py-20 bg-white/30 dark:bg-white/5 rounded-[3rem] backdrop-blur-sm reveal">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="flex flex-col gap-8">
+        <div class="space-y-4">
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Intelligence for the <br/>Modern Learner</h2>
+          <p class="text-soft-grey dark:text-slate-400 text-base md:text-lg">
+            We removed the clutter of traditional academic portals. Nariman gives you the data you need to pivot your study habits in real-time.
+          </p>
+        </div>
+        <div class="grid gap-4">
+          <div class="glass-effect p-6 rounded-2xl flex gap-4 items-start border-l-4 border-l-primary">
+            <div class="p-3 bg-primary/20 rounded-xl text-primary">
+              <span class="material-symbols-outlined">trending_up</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Real-time Insights</h4>
+              <p class="text-sm text-soft-grey dark:text-slate-400">Instantly see how your grades impact your overall trajectory.</p>
+            </div>
+          </div>
+          <div class="glass-effect p-6 rounded-2xl flex gap-4 items-start border-l-4 border-l-primary">
+            <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-blue-500">
+              <span class="material-symbols-outlined">analytics</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Predictive Modeling</h4>
+              <p class="text-sm text-soft-grey dark:text-slate-400">Use advanced student-weighted models to forecast semester ends.</p>
+            </div>
+          </div>
+          <div class="glass-effect p-6 rounded-2xl flex gap-4 items-start border-l-4 border-l-primary">
+            <div class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-xl text-purple-500">
+              <span class="material-symbols-outlined">history_edu</span>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Student Focused</h4>
+              <p class="text-sm text-soft-grey dark:text-slate-400">Intuitive interface designed by people who actually use it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-square glass-effect rounded-[2.5rem] flex items-center justify-center p-8 overflow-hidden shadow-2xl">
+          <div class="w-full space-y-6">
+            <div class="flex justify-between items-end">
+              <div class="space-y-1">
+                <div class="h-2 w-20 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+                <div class="h-4 w-32 bg-primary rounded-full"></div>
+              </div>
+              <div class="text-right">
+                <span class="text-xs font-bold text-soft-grey">PROJECTED GPA</span>
+                <p class="text-3xl font-black text-primary">3.92</p>
+              </div>
+            </div>
+            <div class="flex items-end gap-2 h-48">
+              <div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-[40%]"></div>
+              <div class="flex-1 bg-slate-100 dark:bg-slate-800 rounded-t-lg h-[55%]"></div>
+              <div class="flex-1 bg-primary/40 rounded-t-lg h-[70%]"></div>
+              <div class="flex-1 bg-primary/60 rounded-t-lg h-[85%]"></div>
+              <div class="flex-1 bg-primary rounded-t-lg h-[100%] shadow-[0_-10px_20px_rgba(19,236,146,0.3)]"></div>
+            </div>
+            <div class="flex justify-between text-[10px] font-bold text-slate-400">
+              <span>WEEK 1</span>
+              <span>WEEK 4</span>
+              <span>WEEK 8</span>
+              <span>FINALS</span>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-6 -left-6 glass-effect p-4 rounded-2xl shadow-xl flex items-center gap-3 border-primary/30">
+          <div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">done_all</span>
+          </div>
+          <div>
+            <p class="text-xs font-bold">Goal Reached</p>
+            <p class="text-[10px] text-soft-grey">Calculus III: A-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="max-w-[1200px] mx-auto px-6 mt-24 reveal">
+    <div class="bg-primary rounded-[3rem] p-10 md:p-16 lg:p-20 text-center relative overflow-hidden shadow-2xl shadow-primary/20 pr-4 sm:pr-0">
+      <div class="absolute top-0 right-0 size-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 size-64 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0d1b16] mb-5 lg:mb-6 relative z-10 tracking-tight">
+        Ready to elevate your performance?
+      </h2>
+      <p class="text-[#0d1b16]/70 text-base md:text-lg mb-8 max-w-[600px] mx-auto font-medium relative z-10">
+        Join thousands of students taking control of their academic future today. Simple and powerful.
+      </p>
+      <div class="flex justify-center relative z-10">
+        <a href="/dashboard/">
+        <button class="bg-[#0d1b16] text-white hover:bg-[#1a2f27] transition-all px-10 py-4 rounded-2xl text-base md:text-lg font-bold">
+          Get Started Now
+        </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="max-w-[1300px] mx-auto px-6 py-8 border-t border-slate-200/30 dark:border-slate-800/50 bg-white/20 dark:bg-white/5 backdrop-blur-sm rounded-t-[2rem] mt-8 sm:mt-12 reveal">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h3 class="font-bold text-lg text-slate-800 dark:text-slate-200 mb-3">Nariman</h3>
+        <p class="text-sm text-soft-grey max-w-xs">
+          Empowering students with data-driven academic insights across Africa and beyond.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-slate-700 dark:text-slate-300 mb-3">Contact</h4>
+        <ul class="text-sm text-soft-grey space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">mail</span>
+            narimanrobo8@gmail.com
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">call</span>
+            +250 793 903 619
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">whatsapp</span>
+            <a href="https://wa.me/250793903619" class="hover:text-primary transition-colors">WhatsApp</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-slate-700 dark:text-slate-300 mb-3">Connect</h4>
+        <ul class="text-sm text-soft-grey space-y-2">
+          <li>
+            <a href="https://www.linkedin.com/in/nariman-osman-b9a8783a3/" class="hover:text-primary transition-colors flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">linkedin</span>
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-slate-700 dark:text-slate-300 mb-3">Legal</h4>
+        <ul class="text-sm text-soft-grey space-y-2">
+          <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-4 border-t border-slate-200/20 dark:border-slate-800/30 text-center">
+      <p class="text-sm text-soft-grey">
+        © 2024 Nariman Osman. Designed for Excellence in Kigali, Rwanda.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Scroll Reveal
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealOnScroll = () => {
+        revealElements.forEach(el => {
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < window.innerHeight - 100) {
+            el.classList.add('active');
+          }
+        });
+      };
+      window.addEventListener('scroll', revealOnScroll);
+      revealOnScroll();
+
+      // Dropdowns
+      const narimanBtn = document.querySelector('.nariman-container button');
+      const accountBtn = document.querySelector('.account-container button');
+      const narimanDropdown = document.querySelector('.nariman-dropdown');
+      const accountDropdown = document.querySelector('.account-dropdown');
+
+      // Nariman Dropdown Content
+      if (narimanDropdown) {
+        narimanDropdown.innerHTML = `
+          <a class="block py-2 text-sm font-semibold hover:text-primary transition-colors" href="#">About Us</a>
+          <a class="block py-2 text-sm font-semibold hover:text-primary transition-colors" href="#">How it Works</a>
+          <a class="block py-2 text-sm font-semibold hover:text-primary transition-colors" href="#">Success Stories</a>
+        `;
+      }
+
+      // Account Dropdown Content
+      if (accountDropdown) {
+        accountDropdown.innerHTML = `
+          <a href="#" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Sign In</a>
+          <a href="#" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Sign Up</a>
+          <a href="#" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700">Logout</a>
+        `;
+      }
+
+      // Toggle Nariman Dropdown
+      if (narimanBtn && narimanDropdown) {
+        narimanBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isVisible = narimanDropdown.style.display === 'block';
+          // Hide both
+          narimanDropdown.style.display = 'none';
+          accountDropdown.style.display = 'none';
+          // Toggle current
+          if (!isVisible) narimanDropdown.style.display = 'block';
+        });
+      }
+
+      // Toggle Account Dropdown
+      if (accountBtn && accountDropdown) {
+        accountBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isVisible = accountDropdown.style.display === 'block';
+          // Hide both
+          narimanDropdown.style.display = 'none';
+          accountDropdown.style.display = 'none';
+          // Toggle current
+          if (!isVisible) accountDropdown.style.display = 'block';
+        });
+      }
+
+      // Close dropdowns on outside click
+      document.addEventListener('click', () => {
+        if (narimanDropdown) narimanDropdown.style.display = 'none';
+        if (accountDropdown) accountDropdown.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
