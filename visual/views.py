@@ -14,6 +14,14 @@ def index(request):
     """Landing page"""
     return render(request, 'visual/index.html')
 
+def signup(request):
+    return render(request, 'visual/signup.html')
+    
+def login(request):
+    return render(request, "visual/login.html")
+
+def logout(request):
+    return render(request, "visual/logout.html")
 
 def dashboard(request):
     BASE_DIR = Path(__file__).resolve().parent.parent

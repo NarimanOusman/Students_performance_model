@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nariman Professional Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#13b6ec",
+                "background-light": "#f6f8f8",
+                "background-dark": "#101d22",
+              },
+              fontFamily: {
+                "display": ["Plus Jakarta Sans", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7f0f3] dark:border-[#2a3e46] px-6 md:px-10 py-3 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4 text-[#0d181b] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"></path>
+</svg>
+</div>
+<h2 class="text-[#0d181b] dark:text-white text-xl font-extrabold leading-tight tracking-[-0.015em]">Nariman</h2>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden md:inline text-sm text-[#4c869a] dark:text-gray-400">Ready to model performance?</span>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal transition-opacity hover:opacity-90">
+                Sign Up
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex items-center justify-center p-6 md:p-12">
+<div class="w-full max-w-[480px]">
+<!-- Login Card -->
+<div class="bg-white dark:bg-[#1a2b32] rounded-xl shadow-xl border border-[#e7f0f3] dark:border-[#2a3e46] overflow-hidden">
+<!-- Visual Header in Card -->
+<div class="h-32 bg-primary/10 dark:bg-primary/5 flex items-center justify-center">
+<div class="size-16 rounded-full bg-white dark:bg-[#101d22] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl">analytics</span>
+</div>
+</div>
+<div class="px-8 pt-8 pb-10">
+<!-- Headline -->
+<div class="text-center mb-8">
+<h1 class="text-[#0d181b] dark:text-white text-3xl font-bold tracking-tight">Welcome Back</h1>
+<p class="text-[#4c869a] dark:text-gray-400 mt-2">Login to your Nariman account</p>
+</div>
+<form class="space-y-5">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d181b] dark:text-white text-sm font-semibold leading-normal" for="email">
+                                Email Address
+                            </label>
+<div class="relative">
+<input class="form-input flex w-full rounded-lg text-[#0d181b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfe1e7] dark:border-[#3a525b] bg-white dark:bg-[#101d22] focus:border-primary h-14 placeholder:text-[#4c869a] p-[15px] text-base font-normal leading-normal transition-all" id="email" placeholder="name@company.com" type="email" value=""/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-[#0d181b] dark:text-white text-sm font-semibold leading-normal" for="password">
+                                    Password
+                                </label>
+<a class="text-xs font-bold text-primary hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="flex w-full items-stretch rounded-lg group">
+<input class="form-input flex w-full min-w-0 flex-1 rounded-lg text-[#0d181b] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/20 border border-[#cfe1e7] dark:border-[#3a525b] bg-white dark:bg-[#101d22] focus:border-primary h-14 placeholder:text-[#4c869a] p-[15px] rounded-r-none border-r-0 text-base font-normal leading-normal transition-all" id="password" placeholder="••••••••" type="password" value=""/>
+<div class="text-[#4c869a] dark:text-gray-400 flex border border-[#cfe1e7] dark:border-[#3a525b] bg-white dark:bg-[#101d22] items-center justify-center pr-[15px] rounded-r-lg border-l-0 cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center gap-3 py-1">
+<input class="size-5 rounded border-[#cfe1e7] dark:border-[#3a525b] text-primary focus:ring-primary cursor-pointer" id="remember" type="checkbox"/>
+<label class="text-sm font-medium text-[#4c869a] dark:text-gray-400 cursor-pointer" for="remember">Remember this device</label>
+</div>
+<!-- Login Button -->
+<div class="pt-4">
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+<span>Login</span>
+</button>
+</div>
+</form>
+<!-- Divider -->
+<div class="relative my-8">
+<div class="absolute inset-0 flex items-center">
+<span class="w-full border-t border-[#e7f0f3] dark:border-[#2a3e46]"></span>
+</div>
+<div class="relative flex justify-center text-xs uppercase">
+<span class="bg-white dark:bg-[#1a2b32] px-2 text-[#4c869a] dark:text-gray-500">Security Verified</span>
+</div>
+</div>
+<!-- Footer -->
+<p class="text-center text-sm text-[#4c869a] dark:text-gray-400">
+                        Don't have an account? 
+                        <a class="text-primary font-bold hover:underline" href="#">Sign Up for free</a>
+</p>
+</div>
+</div>
+<!-- Additional Info / Legal -->
+<div class="mt-8 flex justify-center gap-6 text-xs text-[#4c869a] dark:text-gray-500 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</main>
+<!-- Footer Graphic / Background Texture (Implicit) -->
+<div class="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
+</body></html>
